@@ -29,7 +29,8 @@ val store = CoroutineScope(SupervisorJob()).createStore()
 fun ChatScreen(
     user: User,
     navigateUp: () -> Unit,
-    displayTextField: Boolean = true
+    displayTextField: Boolean = true,
+    navigateToNextScreen: () -> Unit
 ) {
     val state by store.stateFlow.collectAsState()
     Scaffold(
@@ -49,6 +50,17 @@ fun ChatScreen(
                 ) {
                     Box(Modifier.weight(1f)) {
                         Messages(user, state.messages)
+                    }
+                    Button(onClick = {
+                        store.send(
+                            Action.ClearMessages(true)
+                        )
+                    }) {
+                        Text(text = "Clear messages")
+                    }
+
+                    Button(onClick = navigateToNextScreen) {
+                        Text(text = "Go to next Screen")
                     }
                     if (displayTextField) {
                         SendMessage { text ->

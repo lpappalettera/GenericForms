@@ -26,9 +26,15 @@ fun NavGraph() {
             backStackEntry.path<String>("username")?.let { username ->
                 ChatScreen(
                     user = User(username),
-                    navigateUp = navigator::goBack
+                    navigateUp = navigator::goBack,
+                    navigateToNextScreen = {
+                        navigator.navigate("/nextScreen")
+                    }
                 )
             }
+        }
+        scene("/nextScreen") { backStackEntry ->
+            NextScreen()
         }
     }
 }
