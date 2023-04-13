@@ -1,7 +1,8 @@
 import androidx.compose.runtime.Composable
-import ui.ChatAppWithScaffold
+import ui.ChatApp
+import ui.GenericFormsApp
 
 @Composable
-fun MainView() = ChatAppWithScaffold()
+fun MainView() = ChatApp()
 
 

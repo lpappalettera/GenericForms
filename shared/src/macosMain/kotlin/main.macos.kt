@@ -1,12 +1,12 @@
 import androidx.compose.ui.window.Window
 import platform.AppKit.NSApp
 import platform.AppKit.NSApplication
-import ui.ChatAppWithScaffold
+import ui.GenericFormsApp
 
 fun main() {
     NSApplication.sharedApplication()
     Window("Chat App") {
-        ChatAppWithScaffold()
+        GenericFormsApp()
     }
     NSApp?.run()
 }
