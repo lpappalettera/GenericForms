@@ -34,7 +34,7 @@ fun NavGraph() {
             }
         }
         scene("/nextScreen") { backStackEntry ->
-            NextScreen()
+            NextScreen(navigator::goBack)
         }
     }
 }
