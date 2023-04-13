@@ -23,7 +23,7 @@ fun StartScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Chat sample") },
+                title = { Text("Beste app") },
                 backgroundColor = MaterialTheme.colors.background,
             )
         }
