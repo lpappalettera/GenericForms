@@ -20,7 +20,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = "chat-mpp"
+rootProject.name = "GenericForms"
 
 include(":androidApp")
 include(":shared")

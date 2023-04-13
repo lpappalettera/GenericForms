@@ -51,11 +51,15 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(compose.runtime)
                 implementation(compose.ui)
                 implementation(compose.foundation)
                 implementation(compose.material)
+                implementation(compose.animation)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+
+                api("moe.tlaster:precompose:1.3.15")
             }
         }
         val androidMain by getting {
