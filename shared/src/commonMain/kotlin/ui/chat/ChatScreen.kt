@@ -26,7 +26,10 @@ val friendMessages = listOf(
 val store = CoroutineScope(SupervisorJob()).createStore()
 
 @Composable
-fun ChatScreen(displayTextField: Boolean = true) {
+fun ChatScreen(
+    displayTextField: Boolean = true,
+    navigateToNextScreen: () -> Unit
+) {
     val state by store.stateFlow.collectAsState()
     Scaffold(
         topBar = {
@@ -47,15 +50,11 @@ fun ChatScreen(displayTextField: Boolean = true) {
                         store.send(
                             Action.ClearMessages(true)
                         )
-                    }){
+                    }) {
                         Text(text = "Clear messages")
                     }
 
-                    Button(onClick = {
-                        store.send(
-                            Action.ClearMessages(true)
-                        )
-                    }){
+                    Button(onClick = navigateToNextScreen) {
                         Text(text = "Go to next Screen")
                     }
                     if (displayTextField) {

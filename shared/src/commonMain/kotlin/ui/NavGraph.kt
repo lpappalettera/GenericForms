@@ -21,7 +21,12 @@ fun NavGraph() {
             )
         }
         scene("/chat") { backStackEntry ->
-           ChatScreen()
+           ChatScreen(navigateToNextScreen = {
+               navigator.navigate("/nextScreen")
+           })
+        }
+        scene("/nextScreen") { backStackEntry ->
+            NextScreen()
         }
     }
 }
