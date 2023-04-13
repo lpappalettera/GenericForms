@@ -2,7 +2,7 @@
 
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
+//    kotlin("native.cocoapods")
     id("com.android.library")
     id("org.jetbrains.compose")
 }
@@ -14,8 +14,8 @@ kotlin {
 
     jvm("desktop")
 
-    ios()
-    iosSimulatorArm64()
+//    ios()
+//    iosSimulatorArm64()
 
     js(IR) {
         browser()
@@ -36,17 +36,17 @@ kotlin {
         }
     }
 
-    cocoapods {
-        summary = "Shared code for the sample"
-        homepage = "https://github.com/JetBrains/compose-jb"
-        ios.deploymentTarget = "14.1"
-        podfile = project.file("../iosApp/Podfile")
-        framework {
-            baseName = "shared"
-            isStatic = true
-        }
-        extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
-    }
+//    cocoapods {
+//        summary = "Shared code for the sample"
+//        homepage = "https://github.com/JetBrains/compose-jb"
+//        ios.deploymentTarget = "14.1"
+//        podfile = project.file("../iosApp/Podfile")
+//        framework {
+//            baseName = "shared"
+//            isStatic = true
+//        }
+//        extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
+//    }
 
     sourceSets {
         val commonMain by getting {
@@ -69,10 +69,10 @@ kotlin {
                 api("androidx.core:core-ktx:1.9.0")
             }
         }
-        val iosMain by getting
-        val iosSimulatorArm64Main by getting {
-            dependsOn(iosMain)
-        }
+//        val iosMain by getting
+//        val iosSimulatorArm64Main by getting {
+//            dependsOn(iosMain)
+//        }
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)

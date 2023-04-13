@@ -44,6 +44,21 @@ fun ChatApp(displayTextField: Boolean = true) {
                     Box(Modifier.weight(1f)) {
                         Messages(state.messages)
                     }
+                    Button(onClick = {
+                        store.send(
+                            Action.ClearMessages(true)
+                        )
+                    }){
+                        Text(text = "Clear messages")
+                    }
+
+                    Button(onClick = {
+                        store.send(
+                            Action.ClearMessages(true)
+                        )
+                    }){
+                        Text(text = "Go to next Screen")
+                    }
                     if (displayTextField) {
                         SendMessage { text ->
                             store.send(
