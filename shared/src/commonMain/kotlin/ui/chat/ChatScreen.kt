@@ -17,11 +17,20 @@ import model.User
 import ui.components.ChevronLeftIconButton
 import utils.timestampMs
 
-val friends = listOf(User("Alex"), User("Lily"), User("Sam"))
+val friends = listOf(User("Ivo"), User("Luciano"), User("Marloes"), User("Robert"), User("Andre"))
 val friendMessages = listOf(
-    "Hi, have a nice day!",
-    "Nice to see you!",
-    "Multiline\ntext\nmessage"
+    "Hey, hallo daar!",
+    "Hey leuke app!",
+    "Deze app is beschikbaar op:\n- Android\n- iOS\n- Desktop\nen je webbrowser!",
+    "Te veel spam...",
+    "UI van deze app is echt mooi",
+    "Hallo hoe werkt dit?",
+    "Vergeet niet je uren te schrijven he",
+    "Toffe presentatie",
+    "Ik heb 39 Apple producten",
+    "Waar zijn de snacks?",
+    "Wie wil er koffie?",
+    "Wow team paars heeft echt een coole app gebouwd"
 )
 val store = CoroutineScope(SupervisorJob()).createStore()
 
@@ -36,7 +45,7 @@ fun ChatScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Chat sample") },
+                title = { Text("Team Paars Chat") },
                 backgroundColor = MaterialTheme.colors.background,
                 navigationIcon = {
                     ChevronLeftIconButton(onClick = navigateUp)
