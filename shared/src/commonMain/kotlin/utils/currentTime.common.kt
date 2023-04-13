@@ -1,3 +1,5 @@
+package utils
+
 fun timeToString(timestampMs: Long): String {
     val seconds = timestampMs
     val minutes = seconds / 1000 / 60

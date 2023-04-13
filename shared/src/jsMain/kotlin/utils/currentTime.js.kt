@@ -1,3 +1,5 @@
+package utils
+
 import kotlin.js.Date
 
 actual fun timestampMs(): Long {

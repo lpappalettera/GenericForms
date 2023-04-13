@@ -88,6 +88,7 @@ kotlin {
         val macosArm64Main by getting {
             dependsOn(macosMain)
         }
+        val jsMain by getting
     }
 }
 
@@ -104,5 +105,20 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+}
+
+compose.experimental {
+    web.application {}
+}
+
+tasks.withType<ProcessResources> {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+afterEvaluate {
+    rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
+        versions.webpackCli.version = "4.10.0"
+        nodeVersion = "16.0.0"
     }
 }

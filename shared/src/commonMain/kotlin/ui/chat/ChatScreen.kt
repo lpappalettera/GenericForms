@@ -1,12 +1,20 @@
-import androidx.compose.foundation.layout.*
+package ui.chat
+
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.*
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
+import model.Message
+import model.User
+import utils.timestampMs
 
 val myUser = User("Me")
 val friends = listOf(User("Alex"), User("Lily"), User("Sam"))
@@ -18,24 +26,15 @@ val friendMessages = listOf(
 val store = CoroutineScope(SupervisorJob()).createStore()
 
 @Composable
-fun ChatAppWithScaffold(displayTextField: Boolean = true) {
-    Theme {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = { Text("Chat sample") },
-                    backgroundColor = MaterialTheme.colors.background,
-                )
-            }) {
-            ChatApp(displayTextField = displayTextField)
-        }
-    }
-}
-
-@Composable
-fun ChatApp(displayTextField: Boolean = true) {
+fun ChatScreen(displayTextField: Boolean = true) {
     val state by store.stateFlow.collectAsState()
-    Theme {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Chat sample") },
+                backgroundColor = MaterialTheme.colors.background,
+            )
+        }) {
         Surface {
             Box(modifier = Modifier.fillMaxSize()) {
                 Column(
@@ -70,17 +69,5 @@ fun ChatApp(displayTextField: Boolean = true) {
             )
             delay(5000)
         }
-    }
-}
-
-@Composable
-fun Theme(content: @Composable () -> Unit) {
-    MaterialTheme(
-        colors = darkColors(
-            surface = Color(ChatColors.SURFACE),
-            background = Color(ChatColors.BACKGROUND),
-        ),
-    ) {
-        content()
     }
 }

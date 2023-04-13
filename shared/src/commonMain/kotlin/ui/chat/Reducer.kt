@@ -1,3 +1,7 @@
+package ui.chat
+
+import model.Message
+
 sealed interface Action {
     data class SendMessage(val message: Message) : Action
 }
