@@ -1,7 +1,9 @@
 package ui
 
 import androidx.compose.runtime.Composable
+import model.User
 import moe.tlaster.precompose.navigation.NavHost
+import moe.tlaster.precompose.navigation.path
 import moe.tlaster.precompose.navigation.rememberNavigator
 import ui.chat.ChatScreen
 import ui.start.StartScreen
@@ -15,13 +17,18 @@ fun NavGraph() {
     ) {
         scene("/start") {
             StartScreen (
-                navigateToChat = {
-                    navigator.navigate("/chat")
+                navigateToChat = { username ->
+                    navigator.navigate("/chat/$username")
                 },
             )
         }
-        scene("/chat") { backStackEntry ->
-           ChatScreen()
+        scene("/chat/{username}") { backStackEntry ->
+            backStackEntry.path<String>("username")?.let { username ->
+                ChatScreen(
+                    user = User(username),
+                    navigateUp = navigator::goBack
+                )
+            }
         }
     }
 }

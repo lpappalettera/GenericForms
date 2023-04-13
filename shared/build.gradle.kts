@@ -58,8 +58,10 @@ kotlin {
                 implementation(compose.animation)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                implementation(compose.materialIconsExtended)
 
                 api("moe.tlaster:precompose:1.3.15")
+
             }
         }
         val androidMain by getting {
@@ -108,17 +110,8 @@ android {
     }
 }
 
-compose.experimental {
-    web.application {}
-}
-
-tasks.withType<ProcessResources> {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}
-
-afterEvaluate {
-    rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
-        versions.webpackCli.version = "4.10.0"
-        nodeVersion = "16.0.0"
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "11"
     }
 }

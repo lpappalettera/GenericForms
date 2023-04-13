@@ -14,9 +14,9 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import model.Message
 import model.User
+import ui.components.ChevronLeftIconButton
 import utils.timestampMs
 
-val myUser = User("Me")
 val friends = listOf(User("Alex"), User("Lily"), User("Sam"))
 val friendMessages = listOf(
     "Hi, have a nice day!",
@@ -26,13 +26,20 @@ val friendMessages = listOf(
 val store = CoroutineScope(SupervisorJob()).createStore()
 
 @Composable
-fun ChatScreen(displayTextField: Boolean = true) {
+fun ChatScreen(
+    user: User,
+    navigateUp: () -> Unit,
+    displayTextField: Boolean = true
+) {
     val state by store.stateFlow.collectAsState()
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text("Chat sample") },
                 backgroundColor = MaterialTheme.colors.background,
+                navigationIcon = {
+                    ChevronLeftIconButton(onClick = navigateUp)
+                },
             )
         }) {
         Surface {
@@ -41,13 +48,13 @@ fun ChatScreen(displayTextField: Boolean = true) {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     Box(Modifier.weight(1f)) {
-                        Messages(state.messages)
+                        Messages(user, state.messages)
                     }
                     if (displayTextField) {
                         SendMessage { text ->
                             store.send(
                                 Action.SendMessage(
-                                    Message(myUser, timeMs = timestampMs(), text)
+                                    Message(user, timeMs = timestampMs(), text)
                                 )
                             )
                         }

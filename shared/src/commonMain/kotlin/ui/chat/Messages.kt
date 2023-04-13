@@ -32,7 +32,7 @@ import theme.ChatColors
 import utils.timeToString
 
 @Composable
-internal inline fun Messages(messages: List<Message>) {
+internal inline fun Messages(currentUser: User, messages: List<Message>) {
     val listState = rememberLazyListState()
     if (messages.isNotEmpty()) {
         LaunchedEffect(messages.last()) {
@@ -46,7 +46,7 @@ internal inline fun Messages(messages: List<Message>) {
     ) {
         messages.forEach { message ->
             item(key = message.id) {
-                ChatMessage(isMyMessage = message.user == myUser, message)
+                ChatMessage(isMyMessage = message.user == currentUser, message)
             }
         }
         item {
